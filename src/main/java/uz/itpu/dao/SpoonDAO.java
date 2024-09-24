@@ -5,8 +5,6 @@ import uz.itpu.entity.Spoon;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
 public class SpoonDAO extends AbstractDAO<Spoon> {
 
     public SpoonDAO() throws SQLException {
@@ -48,10 +46,5 @@ public class SpoonDAO extends AbstractDAO<Spoon> {
     @Override
     public void delete(long id) {
 
-    }
-
-    @Override
-    public List<Spoon> showAll() {
-        return List.of();
     }
 }

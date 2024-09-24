@@ -10,6 +10,6 @@ public interface DAOInterface<T extends Tableware<T>> {
     T showByIndex(long id) throws SQLException;
     void update(T item);
     void delete(long id);
-    List<T> showAll();
+    List<T> showAll() throws SQLException;
 }
 

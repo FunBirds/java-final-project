@@ -5,7 +5,6 @@ import uz.itpu.entity.Plate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class PlateDAO extends AbstractDAO<Plate>{
 
@@ -46,10 +45,5 @@ public class PlateDAO extends AbstractDAO<Plate>{
     @Override
     public void delete(long id) {
 
-    }
-
-    @Override
-    public List<Plate> showAll() {
-        return List.of();
     }
 }

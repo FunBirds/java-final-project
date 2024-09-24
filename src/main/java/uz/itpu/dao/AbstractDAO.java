@@ -4,6 +4,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 import uz.itpu.entity.Tableware;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterface<A> {
     static Dotenv env = Dotenv.load();
@@ -65,6 +67,22 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
         return null;
     }
 
+    @Override
+    public List<A> showAll() throws SQLException {
+        String query = "SELECT * FROM " + tableName;
+        try (Connection connection= getConnection(); PreparedStatement pstm = connection.prepareStatement(query)){
+            ResultSet rs = pstm.executeQuery();
+            List<A> list = new ArrayList<>();
+            while (rs.next()){
+                list.add(mapResultSetToObject(rs));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+
+    // funcs which should be implemented in child classes
     protected abstract A mapResultSetToObject(ResultSet rs) throws SQLException;
 
     protected abstract String getInsertQuery();

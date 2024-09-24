@@ -5,7 +5,6 @@ import uz.itpu.entity.Cup;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class CupDAO extends AbstractDAO<Cup> {
 
@@ -47,10 +46,5 @@ public class CupDAO extends AbstractDAO<Cup> {
 
     @Override
     public void delete(long id) {
-    }
-
-    @Override
-    public List<Cup> showAll() {
-        return null;
     }
 }
