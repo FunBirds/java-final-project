@@ -1,18 +1,50 @@
 package uz.itpu.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Entity
+import java.util.Objects;
+
 public class Spoon extends Tableware<Spoon> {
-
-    @Column(nullable = false)
     private int length;
-
-    @Column(nullable = false)
     private String type;
+
+    public int getLength() {
+        return length;
+    }
+
+    public Spoon setLength(int length) {
+        this.length = length;
+        return this;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Spoon setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    @Override
+    public String commonField() {
+        return super.commonField() + ", length=" + length + ", type='" + type + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Spoon spoon = (Spoon) o;
+        return length == spoon.length;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(length);
+    }
+
+    @Override
+    public String toString() {
+        return "Spoon{" + String.join(",", commonField(), "length=" + length + ", type='" + type + '\'') + '}';
+    }
 }
