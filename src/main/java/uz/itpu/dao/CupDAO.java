@@ -40,11 +40,6 @@ public class CupDAO extends AbstractDAO<Cup> {
     }
 
     @Override
-    public void update(Cup item) {
-
-    }
-
-    @Override
     public void delete(long id) {
     }
 }

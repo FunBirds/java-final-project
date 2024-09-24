@@ -39,11 +39,6 @@ public class SpoonDAO extends AbstractDAO<Spoon> {
     }
 
     @Override
-    public void update(Spoon item) {
-
-    }
-
-    @Override
     public void delete(long id) {
 
     }

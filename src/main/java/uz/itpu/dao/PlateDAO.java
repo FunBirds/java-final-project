@@ -38,11 +38,6 @@ public class PlateDAO extends AbstractDAO<Plate>{
     }
 
     @Override
-    public void update(Plate item) {
-
-    }
-
-    @Override
     public void delete(long id) {
 
     }

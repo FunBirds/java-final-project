@@ -82,6 +82,20 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
         }
     }
 
+    @Override
+    public void delete(long id) {
+        String query = "DELETE FROM " + tableName + " WHERE id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(query)) {
+
+            pstmt.setLong(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
     // funcs which should be implemented in child classes
     protected abstract A mapResultSetToObject(ResultSet rs) throws SQLException;
 
