@@ -1,56 +1,55 @@
 package uz.itpu.dao;
 
-import uz.itpu.entity.Cup;
+import uz.itpu.entity.Plate;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CupDAO extends AbstractDAO<Cup> {
+public class PlateDAO extends AbstractDAO<Plate>{
 
-    public CupDAO() throws SQLException {
-        super("cup");
+    public PlateDAO() throws SQLException {
+        super("plate");
     }
 
     @Override
     protected String getInsertQuery() {
-        return "INSERT INTO " + tableName + " (name, material, price, color, volume, size) VALUES (?, ?, ?, ?, ?, ?)";
+        return "INSERT INTO " + tableName + " (name, material, price, color, diameter) VALUES (?, ?, ?, ?, ?)";
     }
 
     @Override
-    protected void setInsertParameters(PreparedStatement pstmt, Cup item) throws SQLException {
+    protected void setInsertParameters(PreparedStatement pstmt, Plate item) throws SQLException {
         pstmt.setString(1, item.getName());
         pstmt.setString(2, item.getMaterial());
         pstmt.setInt(3, item.getPrice());
         pstmt.setString(4, item.getColor());
-        pstmt.setInt(5, item.getVolume());
-        pstmt.setInt(6, item.getSize());
+        pstmt.setInt(5, item.getDiameter());
     }
 
     @Override
-    protected Cup mapResultSetToObject(ResultSet rs) throws SQLException{
-        return new Cup()
+    protected Plate mapResultSetToObject(ResultSet rs) throws SQLException{
+        return new Plate()
                 .setId(rs.getLong("id"))
                 .setName(rs.getString("name"))
                 .setMaterial(rs.getString("material"))
                 .setPrice(rs.getInt("price"))
                 .setColor(rs.getString("color"))
-                .setVolume(rs.getInt("volume"))
-                .setSize(rs.getInt("size"));
+                .setDiameter(rs.getInt("diameter"));
     }
 
     @Override
-    public void update(Cup item) {
+    public void update(Plate item) {
 
     }
 
     @Override
     public void delete(long id) {
+
     }
 
     @Override
-    public List<Cup> showAll() {
-        return null;
+    public List<Plate> showAll() {
+        return List.of();
     }
 }

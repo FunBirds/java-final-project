@@ -18,7 +18,7 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
         return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
     }
 
-    protected AbstractDAO(String tableName) throws SQLException {
+    protected AbstractDAO(String tableName) {
         this.tableName = tableName;
     }
 
@@ -35,14 +35,37 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
             if (affectedRows > 0) {
                 try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        item.setId(generatedKeys.getLong(1)); // Set the generated ID back to the entity object
+                        item.setId(generatedKeys.getLong(1));
                     }
                 }
             }
         } catch (SQLException e) {
-            throw new SQLException(e.getMessage()); // Handle SQL exceptions appropriately
+            throw new SQLException(e.getMessage());
         }
     }
+
+    @Override
+    public A showByIndex(long id) throws SQLException {
+        String query = "SELECT * FROM " + tableName + " WHERE id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(query)) {
+
+            pstmt.setLong(1, id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToObject(rs);
+                }
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+
+        return null;
+    }
+
+    protected abstract A mapResultSetToObject(ResultSet rs) throws SQLException;
 
     protected abstract String getInsertQuery();
 

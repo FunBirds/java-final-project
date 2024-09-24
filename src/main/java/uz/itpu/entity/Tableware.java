@@ -16,7 +16,7 @@ public class Tableware<SELF extends Tableware<SELF>> {
 
     public SELF setId(Long id) {
         this.id = id;
-            return (SELF) this;
+        return (SELF) this;
     }
 
     public String getName() {
