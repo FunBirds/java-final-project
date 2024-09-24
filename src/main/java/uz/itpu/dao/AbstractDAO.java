@@ -1,18 +1,21 @@
 package uz.itpu.dao;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import uz.itpu.entity.Tableware;
 
 import java.sql.*;
 
 public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterface<A> {
-    private static final String URL = System.getenv("DB_URL");
-    private static final String USERNAME = System.getenv("DB_USERNAME");
-    private static final String PASSWORD = System.getenv("DB_PASSWORD");
+    static Dotenv env = Dotenv.load();
+
+    private static final String DB_URL = env.get("DB_URL");
+    private static final String DB_USERNAME = env.get("DB_USERNAME");
+    private static final String DB_PASSWORD = env.get("DB_PASSWORD");
 
     protected final String tableName;
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
     }
 
     protected AbstractDAO(String tableName) throws SQLException {
