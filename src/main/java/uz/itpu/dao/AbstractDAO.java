@@ -26,6 +26,10 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
 
     @Override
     public void insert(A item) throws SQLException {
+        if (item.getMaterial() == null) {
+            throw new SQLException("Material cannot be null");
+        }
+
         String query = getInsertQuery();
 
         try (Connection connection = getConnection();
@@ -45,6 +49,7 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
             throw new SQLException(e.getMessage());
         }
     }
+
 
     @Override
     public A showByIndex(long id) throws SQLException {
