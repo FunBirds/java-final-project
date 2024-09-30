@@ -34,7 +34,14 @@ public class Plate extends Tableware<Plate> {
 
     @Override
     public String toString() {
-        return "Plate{" + String.join(",", commonField(), "diameter=" + diameter) + '}';
+        return "Plate{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", material='" + getMaterial() + '\'' +
+                ", price=" + getPrice() +
+                ", color='" + getColor() + '\'' +
+                ", diameter=" + diameter +
+                '}';
     }
 
 }

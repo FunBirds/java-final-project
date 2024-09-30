@@ -39,7 +39,15 @@ public class Cup extends Tableware<Cup> {
 
     @Override
     public String toString() {
-        return "Cup{" + String.join(",", commonField(), "volume=" + volume) + '}' + "\n";
+        return "Cup{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", material='" + getMaterial() + '\'' +
+                ", price=" + getPrice() +
+                ", color='" + getColor() + '\'' +
+                ", volume=" + volume +
+                ", size=" + size +
+                '}';
     }
 
     @Override

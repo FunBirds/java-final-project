@@ -2,7 +2,6 @@ package uz.itpu.dao;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import uz.itpu.entity.Tableware;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +15,13 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
 
     protected final String tableName;
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-    }
-
     protected AbstractDAO(String tableName) {
         this.tableName = tableName;
+    }
+
+    public static Connection getConnection() throws SQLException {
+        assert DB_URL != null;
+        return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
     }
 
     @Override
@@ -49,7 +49,6 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
             throw new SQLException(e.getMessage());
         }
     }
-
 
     @Override
     public A showByIndex(long id) throws SQLException {
@@ -92,7 +91,7 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
         String query = "DELETE FROM " + tableName + " WHERE id = ?";
 
         try (Connection connection = getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(query)) {
+            PreparedStatement pstmt = connection.prepareStatement(query)) {
 
             pstmt.setLong(1, id);
             pstmt.executeUpdate();

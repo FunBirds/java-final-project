@@ -45,6 +45,14 @@ public class Spoon extends Tableware<Spoon> {
 
     @Override
     public String toString() {
-        return "Spoon{" + String.join(",", commonField(), "length=" + length + ", type='" + type + '\'') + '}';
+        return "Spoon{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", material='" + getMaterial() + '\'' +
+                ", price=" + getPrice() +
+                ", color='" + getColor() + '\'' +
+                ", length=" + length +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

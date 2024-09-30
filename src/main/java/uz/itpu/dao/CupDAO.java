@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class CupDAO extends AbstractDAO<Cup> {
 
-    public CupDAO() throws SQLException {
+    public CupDAO() {
         super("cup");
     }
 
@@ -37,9 +37,5 @@ public class CupDAO extends AbstractDAO<Cup> {
                 .setColor(rs.getString("color"))
                 .setVolume(rs.getInt("volume"))
                 .setSize(rs.getInt("size"));
-    }
-
-    @Override
-    public void delete(long id) {
     }
 }
