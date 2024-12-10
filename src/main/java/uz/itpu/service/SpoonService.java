@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class SpoonService implements ServiceInterface<Spoon> {
     SpoonFactory spoonFactory = new SpoonFactory();
-    DAOInterface<Spoon> spoonDAO;
+    private final DAOInterface<Spoon> spoonDAO;
 
-    {
+    public SpoonService() {
         try {
             spoonDAO = spoonFactory.createDao();
         } catch (SQLException e) {

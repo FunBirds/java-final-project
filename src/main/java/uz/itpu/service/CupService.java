@@ -7,15 +7,12 @@ import uz.itpu.entity.Cup;
 import java.sql.SQLException;
 
 public class CupService implements ServiceInterface<Cup>{
-    CupFactory cupFactory = new CupFactory();
-    DAOInterface<Cup> cupDAO;
 
-    {
-        try {
-            cupDAO = cupFactory.createDao();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    private final DAOInterface<Cup> cupDAO;
+
+    public CupService() throws SQLException {
+        CupFactory cupFactory = new CupFactory();
+        this.cupDAO = cupFactory.createDao();
     }
 
     @Override
@@ -49,6 +46,6 @@ public class CupService implements ServiceInterface<Cup>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-return null;
+        return null;
     }
 }

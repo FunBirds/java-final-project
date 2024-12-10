@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class CupDAOTest {
     @Test
-    public void insertShouldThrowSQLExceptionWhenNullPasses() throws SQLException {
+    public void insertShouldThrowSQLExceptionWhenNullPasses() {
         var cup = new CupDAO();
         Cup cup1 = new Cup().setName("Ceramic Inserting Data").setMaterial(null).setPrice(15).setColor("Blue").setVolume(300);
         assertThrows(SQLException.class, () -> cup.insert(cup1));
@@ -20,6 +20,6 @@ public class CupDAOTest {
         Cup cup1 = new Cup().setName("Ceramic Inserting Data").setMaterial("Ceramic").setPrice(15).setColor("Blue").setVolume(300).setSize(12);
         cup.insert(cup1);
         Long insertedID = cup1.getId();
-        assertEquals(cup1, cup.showByIndex(3));
+        assertEquals(cup1, cup.showByIndex(insertedID));
     }
 }

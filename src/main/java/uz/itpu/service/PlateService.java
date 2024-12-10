@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class PlateService implements ServiceInterface<Plate> {
     PlateFactory plateFactory = new PlateFactory();
-    DAOInterface<Plate> plateDAO;
+    private DAOInterface<Plate> plateDAO;
 
-    {
+    public PlateService() {
         try {
             plateDAO = plateFactory.createDao();
         } catch (SQLException e) {
