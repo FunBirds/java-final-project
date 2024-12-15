@@ -5,6 +5,7 @@ import uz.itpu.dao.factory.SpoonFactory;
 import uz.itpu.entity.Spoon;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class SpoonService implements ServiceInterface<Spoon> {
     SpoonFactory spoonFactory = new SpoonFactory();
@@ -43,12 +44,11 @@ public class SpoonService implements ServiceInterface<Spoon> {
     }
 
     @Override
-    public Spoon showAll() {
+    public List<Spoon> showAll() {
         try {
-            spoonDAO.showAll();
+           return spoonDAO.showAll();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }

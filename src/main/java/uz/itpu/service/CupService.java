@@ -5,14 +5,19 @@ import uz.itpu.dao.factory.CupFactory;
 import uz.itpu.entity.Cup;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class CupService implements ServiceInterface<Cup>{
 
     private final DAOInterface<Cup> cupDAO;
 
-    public CupService() throws SQLException {
-        CupFactory cupFactory = new CupFactory();
-        this.cupDAO = cupFactory.createDao();
+    public CupService() {
+        try {
+            CupFactory cupFactory = new CupFactory();
+            this.cupDAO = cupFactory.createDao();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -40,12 +45,11 @@ public class CupService implements ServiceInterface<Cup>{
     }
 
     @Override
-    public Cup showAll() {
+    public List<Cup> showAll() {
         try {
-            cupDAO.showAll();
+            return cupDAO.showAll();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }

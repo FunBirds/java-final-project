@@ -5,10 +5,11 @@ import uz.itpu.dao.factory.PlateFactory;
 import uz.itpu.entity.Plate;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class PlateService implements ServiceInterface<Plate> {
     PlateFactory plateFactory = new PlateFactory();
-    private DAOInterface<Plate> plateDAO;
+    private final DAOInterface<Plate> plateDAO;
 
     public PlateService() {
         try {
@@ -43,12 +44,11 @@ public class PlateService implements ServiceInterface<Plate> {
     }
 
     @Override
-    public Plate showAll() {
+    public List<Plate> showAll() {
         try {
-            plateDAO.showAll();
+           return plateDAO.showAll();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }
