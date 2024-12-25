@@ -30,13 +30,12 @@ public class CupService implements ServiceInterface<Cup>{
     }
 
     @Override
-    public Cup showByIndex(long id) {
+    public List<Cup> showByIndex(long id) {
         try {
-            cupDAO.showByIndex(id);
+           return cupDAO.showByIndex(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override

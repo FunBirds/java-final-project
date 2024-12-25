@@ -17,7 +17,7 @@ public abstract class AbstractController<A extends Tableware<A>> implements Cont
         this.service.insert(tableware);
     }
 
-    public A showByIndex(long index) {
+    public List<A> showByIndex(long index) {
         return this.service.showByIndex(index);
     }
 

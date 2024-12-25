@@ -29,13 +29,12 @@ public class PlateService implements ServiceInterface<Plate> {
     }
 
     @Override
-    public Plate showByIndex(long id) {
+    public List<Plate> showByIndex(long id) {
         try {
-            plateDAO.showByIndex(id);
+            return plateDAO.showByIndex(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override

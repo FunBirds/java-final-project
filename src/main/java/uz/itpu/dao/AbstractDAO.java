@@ -51,24 +51,19 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
     }
 
     @Override
-    public A showByIndex(long id) throws SQLException {
+    public List<A> showByIndex(long id) throws SQLException {
         String query = "SELECT * FROM " + tableName + " WHERE id = ?";
 
-        try (Connection connection = getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(query)) {
-
-            pstmt.setLong(1, id);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return mapResultSetToObject(rs);
-                }
+        try (Connection connection= getConnection(); PreparedStatement pstm = connection.prepareStatement(query)){
+            ResultSet rs = pstm.executeQuery();
+            List<A> list = new ArrayList<>();
+            while (rs.next()){
+                list.add(mapResultSetToObject(rs));
             }
+            return list;
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
-
-        return null;
     }
 
     @Override

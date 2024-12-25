@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DAOInterface<T extends Tableware<T>> {
     void insert(T item) throws SQLException;
-    T showByIndex(long id) throws SQLException;
+    List<T> showByIndex(long id) throws SQLException;
     void delete(long id);
     List<T> showAll() throws SQLException;
 }

@@ -29,13 +29,12 @@ public class SpoonService implements ServiceInterface<Spoon> {
     }
 
     @Override
-    public Spoon showByIndex(long id) {
+    public List<Spoon> showByIndex(long id) {
         try {
-            spoonDAO.showByIndex(id);
+            return spoonDAO.showByIndex(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override

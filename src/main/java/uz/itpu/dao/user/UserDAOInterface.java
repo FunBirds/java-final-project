@@ -6,10 +6,10 @@ import uz.itpu.entity.user.User;
 import java.util.List;
 
 public interface UserDAOInterface<A extends User<A>> {
-    void loginAdmin(Admin item);
-    void loginUser(A item);
+    void login(Admin item);
     void deleteUser(long id);
-    void updateUser(A item);
+    void updateUser(A item, long id);
     List<A> showAllUsers();
-    A showUserById(long id);
+    List<A> showUserById(long id);
+    void newAdmin(Admin item);
 }
