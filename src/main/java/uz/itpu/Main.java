@@ -1,14 +1,17 @@
 package uz.itpu;
 
 
-import uz.itpu.dao.user.AdminDAO;
-import uz.itpu.dao.user.UserDAOInterface;
+import uz.itpu.controller.user.AdminController;
+import uz.itpu.controller.user.UserControllerInterface;
 import uz.itpu.entity.user.Admin;
+import uz.itpu.service.user.AdminService;
+import uz.itpu.service.user.UserServiceInterface;
 
 public class Main {
     public static void main(String[] args) {
-        UserDAOInterface<Admin> adminDAO = new AdminDAO();
-        System.out.println(adminDAO.showAllUsers());
+        UserServiceInterface<Admin> service = new AdminService();
+        UserControllerInterface<Admin> ctrl = new AdminController(service);
+        System.out.println(ctrl.showAllUsers());
     }
 }
 
