@@ -22,10 +22,6 @@ public abstract class AbstractUserController<A extends User<A>> implements UserC
         serviceInterface.deleteUser(id);
     }
 
-    public void updateUser(A item, long id) {
-        serviceInterface.updateUser(item, id);
-    }
-
     public List<A> showAllUsers() {
         return serviceInterface.showAllUsers();
     }

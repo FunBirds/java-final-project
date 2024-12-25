@@ -23,10 +23,6 @@ public class AdminService implements UserServiceInterface<Admin> {
         adminDAO.deleteUser(id);
     }
 
-    @Override
-    public void updateUser(Admin item, long id) {
-        adminDAO.updateUser(item, id);
-    }
 
     @Override
     public List<Admin> showAllUsers() {

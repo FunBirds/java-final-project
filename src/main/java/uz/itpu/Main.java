@@ -1,17 +1,15 @@
 package uz.itpu;
 
-
-import uz.itpu.controller.user.AdminController;
-import uz.itpu.controller.user.UserControllerInterface;
-import uz.itpu.entity.user.Admin;
-import uz.itpu.service.user.AdminService;
-import uz.itpu.service.user.UserServiceInterface;
+import uz.itpu.ui.UI;
 
 public class Main {
     public static void main(String[] args) {
-        UserServiceInterface<Admin> service = new AdminService();
-        UserControllerInterface<Admin> ctrl = new AdminController(service);
-        System.out.println(ctrl.showAllUsers());
+        try {
+            UI ui = new UI();
+            ui.run();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

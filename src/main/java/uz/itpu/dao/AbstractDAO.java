@@ -2,6 +2,7 @@ package uz.itpu.dao;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import uz.itpu.entity.Tableware;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,7 @@ public abstract class AbstractDAO<A extends Tableware<A>> implements DAOInterfac
 
             pstmt.setLong(1, id);
             pstmt.executeUpdate();
+            System.out.println("Deleted successfully");
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

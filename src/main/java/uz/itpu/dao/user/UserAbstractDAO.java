@@ -174,7 +174,20 @@ public abstract class UserAbstractDAO<A extends User<A>> implements UserDAOInter
 
     @Override
     public void newAdmin(Admin item) {
+        String query = "INSERT INTO " + tableName + " (name, email, password, role) VALUES (?, ?, ?, ?)";
+        try (Connection connection = getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(query)) {
 
+            pstmt.setString(1, item.getName());
+            pstmt.setString(2, item.getEmail());
+            pstmt.setString(3, item.getPassword());
+            pstmt.setString(4, item.getRole());
+
+            pstmt.executeUpdate();
+            System.out.println("Admin created successfully");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected abstract A showByIndexUser(ResultSet res) throws SQLException;

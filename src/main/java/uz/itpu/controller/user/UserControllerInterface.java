@@ -10,8 +10,6 @@ public interface UserControllerInterface<A extends User<A>> {
 
     void deleteUser(long id);
 
-    void updateUser(A item, long id);
-
     List<A> showAllUsers();
 
     List<A> showUserById(long id);
